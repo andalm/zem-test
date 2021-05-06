@@ -1,0 +1,29 @@
+{
+  "name": "portafolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+
+  "dependencies": {
+    "serverless": "^2.39.2"
+  },
+  "devDependencies": {
+    "serverless-localstack": "^0.4.30"
+  },
+  "scripts": {
+    "deploy": "node_modules/.bin/sls deploy --stage local",
+    "function": "node_modules/.bin/sls deploy --stage local -f",
+    "invoke": "node_modules/.bin/sls invoke local -f",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andalm/zem-test.git"
+  },
+  "author": "Andrés Aldana <andres.aldana.martinez@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andalm/zem-test/issues"
+  },
+  "homepage": "https://github.com/andalm/zem-test#readme"
+}
