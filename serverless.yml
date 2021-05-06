@@ -15,6 +15,9 @@ package:
     - '!zipfile.*/**'
     - '!*.pem'
     - '!*.pem.*'
+    - '!.idea/**'
+    - '!Dockerfile'
+    - '!docker-compose.yml'
 
 custom:
   localstack:
