@@ -4,10 +4,10 @@ module.exports.user = async event => {
     body: JSON.stringify(
       {
         message: `Successfully`,
-        input: event,
+        input: event
       },
       null,
       2
-    ),
-  };
-};
+    )
+  }
+}
