@@ -1,0 +1,7 @@
+{
+  "name": "portafolio",
+  "verbose": true,
+  "modulePathIgnorePatterns": [
+    "fixtures"
+  ]
+}
