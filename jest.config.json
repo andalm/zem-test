@@ -3,7 +3,7 @@
   "verbose": true,
   "modulePathIgnorePatterns": [
     "fixtures",
-    "data",
+    "data/",
     "zipfile.*",
     ".serverless",
     "node_modules"

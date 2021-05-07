@@ -12,7 +12,6 @@ plugins:
 package:
   patterns:
     - '!data/**'
-    - '!scripts/**'
     - '!zipfile.*/**'
     - '!*.pem'
     - '!*.pem.*'

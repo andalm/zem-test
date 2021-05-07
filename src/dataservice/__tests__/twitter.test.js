@@ -1,10 +1,10 @@
 const Twitter = require('../twitter')
-const TwitterSourceMock = require('./fixtures/twitter.fixture')
+const TwitterAdapterMock = require('../../adapter/fixtures/twitter.fixture')
 
 let twitter = null
 
 beforeAll(() => {
-  twitter = new Twitter(new TwitterSourceMock())
+  twitter = new Twitter(new TwitterAdapterMock())
 })
 
 describe('Twitter', () => {

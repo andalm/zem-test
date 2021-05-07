@@ -1,6 +1,6 @@
 const Twitter = require('twitter')
 
-module.exports = class TwitterSource {
+module.exports = class TwitterAdapter {
   
   #api
   
