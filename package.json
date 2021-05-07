@@ -2,8 +2,8 @@
   "name": "portafolio",
   "version": "1.0.0",
   "description": "",
-  "main": "handler.js",
   "dependencies": {
+    "lodash": "^4.17.21",
     "serverless": "^2.40.0",
     "twitter": "^1.7.1"
   },
