@@ -1,0 +1,11 @@
+tweets:
+  handler: src/function/twitter/tweets.get
+  events:
+    - http:
+        path: tweets
+        method: get
+        cors: true
+        request:
+          parameters:
+            querystrings:
+              count: true

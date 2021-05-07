@@ -19,6 +19,7 @@ package:
     - '!Dockerfile'
     - '!docker-compose.yml'
     - '!__tests__/**'
+    - 'src/**'
 
 custom:
   localstack:
@@ -39,11 +40,4 @@ custom:
       sudo: false
 
 functions:
-  user:
-    handler: handler.user
-    description: Update alkosto stock
-    events:
-      - http:
-          path: user
-          method: get
-          cors: true
+  - ${file(src/function/twitter/functions.yml)}

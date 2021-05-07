@@ -1,10 +1,14 @@
 const Twitter = require('../twitter')
+const TwitterService = require('../../dataservice/twitter')
 const TwitterAdapterMock = require('../../adapter/fixtures/twitter.fixture')
 
 let twitter = null
 
 beforeAll(() => {
-  twitter = new Twitter(new TwitterAdapterMock())
+  const twitterService = new TwitterService(
+    new TwitterAdapterMock()
+  )
+  twitter = new Twitter(twitterService)
 })
 
 describe('Twitter', () => {
@@ -13,9 +17,10 @@ describe('Twitter', () => {
     expect(recentTweets.length).toBeGreaterThanOrEqual(5)
   })
   
-  it('Should receive maximum 1 recent tweets to validate structure', async () => {
+  it('Should receive maximum 1 recent tweets to validate structure ', async () => {
     const recentTweet = await twitter.getRecent()
     expect(typeof recentTweet[0].text).toBe('string')
+    
     expect(typeof recentTweet[0].user.id).toBe('number')
     expect(typeof recentTweet[0].user.description).toBe('string')
     expect(typeof recentTweet[0].user.url).toBe('string')
