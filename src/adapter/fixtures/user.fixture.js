@@ -12,6 +12,9 @@ module.exports = class UserFixture {
   }]
   
   async get(id) {
-    return this.#data.find(user => user.id === id) || {}
+    return Object.assign(
+      {},
+      this.#data.find(user => user.id === id)
+    )
   }
 }
