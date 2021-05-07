@@ -1,0 +1,52 @@
+version: "3.8"
+
+networks:
+  zem:
+    driver: bridge
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566-4599:4566-4599
+      - 8080:8080
+    environment:
+      - SERVICES=dynamodb,lambda,s3,cloudformation,sts,apigateway,iam,route53,cloudwatch,edge,kms,serverless,logs,ssm,events
+      - DEBUG=true
+      - DATA_DIR=/tmp/localstack/data
+      - PORT_WEB_UI=8080
+      - LAMBDA_EXECUTOR=docker
+      - LAMBDA_REMOTE_DOCKER=true
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - START_WEB=1
+      - DEFAULT_REGION=us-east-1
+      - INIT_SCRIPTS_PATH=scripts
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-west-1
+    volumes:
+      - .:/tmp/localstack
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    privileged: true
+    networks:
+      - zem
+
+  api:
+    depends_on:
+      - localstack
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-west-1
+    working_dir: /node/src/app
+    volumes:
+      - .:/node/src/app
+      - /node/src/app/node_modules
+    networks:
+      - zem
+    tty: true
+    ports:
+      - 3071:3071

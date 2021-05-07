@@ -1,0 +1,51 @@
+service: portafolio
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+plugins:
+  - serverless-localstack
+
+package:
+  patterns:
+    - '!data/**'
+    - '!scripts/**'
+    - '!zipfile.*/**'
+    - '!*.pem'
+    - '!*.pem.*'
+    - '!.idea/**'
+    - '!Dockerfile'
+    - '!docker-compose.yml'
+    - '!__tests__/**'
+
+custom:
+  localstack:
+    stages:
+      - local
+    host: http://localstack
+    Lambda: http://localstack:4566
+    CloudFormation: http://localstack:4566
+    CloudWatch: http://localstack:4566
+    S3: http://localstack:4566
+    APIGateway: http://localstack:4566
+    Route53: http://localstack:4566
+    edgePort: 4566
+    autostart: false
+    lambda:
+      mountCode: false
+    docker:
+      sudo: false
+
+functions:
+  user:
+    handler: handler.user
+    description: Update alkosto stock
+    events:
+      - http:
+          path: user
+          method: get
+          cors: true
+
+
