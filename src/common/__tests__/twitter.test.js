@@ -8,12 +8,12 @@ beforeAll(() => {
 })
 
 describe('Twitter', () => {
-  it('Should receive 5 recent tweets', async () => {
+  it('Should receive maximum 5 recent tweets', async () => {
     const recentTweets = await twitter.getRecent(5)
-    expect(recentTweets.length).toBe(5)
+    expect(recentTweets.length).toBeGreaterThanOrEqual(5)
   })
   
-  it('Should receive 1 recent tweets to validate structure', async () => {
+  it('Should receive maximum 1 recent tweets to validate structure', async () => {
     const recentTweet = await twitter.getRecent()
     expect(typeof recentTweet[0].text).toBe('string')
     expect(typeof recentTweet[0].user.id).toBe('number')

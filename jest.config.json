@@ -2,6 +2,10 @@
   "name": "portafolio",
   "verbose": true,
   "modulePathIgnorePatterns": [
-    "fixtures"
+    "fixtures",
+    "data",
+    "zipfile.*",
+    ".serverless",
+    "node_modules"
   ]
 }
