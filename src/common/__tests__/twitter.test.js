@@ -10,8 +10,9 @@ describe('Twitter', () => {
   
   it('Should receive 1 recent tweets to validate structure', async () => {
     const recentTweet = await twitter.getRecent()
-    expect(recentTweet.text).toBeInstanceOf(String)
-    expect(recentTweet.user.description).toBeInstanceOf(String)
-    expect(recentTweet.user.url).toBeInstanceOf(String)
+    expect(typeof recentTweet[0].text).toBe('string')
+    expect(typeof recentTweet[0].user.id).toBe('number')
+    expect(typeof recentTweet[0].user.description).toBe('string')
+    expect(typeof recentTweet[0].user.url).toBe('string')
   })
 })
