@@ -1,8 +1,13 @@
 const Twitter = require('../twitter')
+const TwitterFixture = require('./fixtures/twitter.fixture')
+
+let twitter = null
+
+beforeAll(() => {
+  twitter = new Twitter(new TwitterFixture())
+})
 
 describe('Twitter', () => {
-  const twitter = new Twitter({name: 'mock source'})
-  
   it('Should receive 5 recent tweets', async () => {
     const recentTweets = await twitter.getRecent(5)
     expect(recentTweets.length).toBe(5)
