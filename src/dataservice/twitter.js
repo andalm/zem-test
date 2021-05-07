@@ -6,7 +6,7 @@ module.exports = class Twitter {
     this.#source = source
   }
   
-  async getRecent(count = 1) {
-    return await this.#source.get('statuses/user_timeline.json', {count})
+  async get(count = 1) {
+    return this.#source.get('statuses/user_timeline.json', {count})
   }
 }
