@@ -1,0 +1,11 @@
+user:
+  handler: src/function/user/user.get
+  events:
+    - http:
+        path: user/{userId}
+        method: get
+        cors: true
+    - http:
+        path: user/{userId}
+        method: put
+        cors: true
