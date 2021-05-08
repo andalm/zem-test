@@ -17,4 +17,15 @@ module.exports = class UserFixture {
       this.#data.find(user => user.id === id)
     )
   }
+  
+  async update(id, params) {
+    let index = this.#data.findIndex(user => user.id === id)
+    if (index === -1) {
+      throw new Error('Record not found')
+    }
+    this.#data[index] = Object.assign(
+      this.#data[index],
+      params
+    )
+  }
 }
