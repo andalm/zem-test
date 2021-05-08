@@ -4,6 +4,16 @@ provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:table/User"
 
 plugins:
   - serverless-localstack
@@ -32,6 +42,7 @@ custom:
     S3: http://localstack:4566
     APIGateway: http://localstack:4566
     Route53: http://localstack:4566
+    DynamoDB: http://localstack:4566
     edgePort: 4566
     autostart: false
     lambda:
@@ -41,3 +52,21 @@ custom:
 
 functions:
   - ${file(src/function/twitter/functions.yml)}
+  - ${file(src/function/user/functions.yml)}
+
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: User
