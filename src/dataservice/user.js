@@ -9,4 +9,8 @@ module.exports = class User {
   async get(id) {
     return this.#source.get(id)
   }
+  
+  async update(id, params) {
+    return this.#source.update(id, params)
+  }
 }
