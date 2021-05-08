@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "aws-sdk": "^2.903.0",
     "lodash": "^4.17.21",
     "serverless": "^2.40.0",
     "twitter": "^1.7.1"
