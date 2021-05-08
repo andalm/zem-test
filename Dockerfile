@@ -4,3 +4,5 @@ WORKDIR /node/src/app
 COPY . .
 
 RUN npm i
+RUN chmod +x src/script/start.sh
+ENTRYPOINT ["src/script/start.sh"]
