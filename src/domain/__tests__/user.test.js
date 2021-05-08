@@ -28,8 +28,8 @@ describe('User', () => {
   })
   
   it('Should get an empty object if user doesn`t exist', async () => {
-    const userResult = await user.getById(123156)
-    expect(typeof userResult).toBe('object')
+    const userFields = Object.keys(await user.getById(123156))
+    expect(userFields.length).toBe(0)
   })
   
   it('Should update info by user id', async () => {
@@ -37,6 +37,6 @@ describe('User', () => {
     userResult.firstName = 'Andrés'
     await user.updateById('61a7ce5b-7a26-1e8e-9ac8-06474d96a566', userResult)
     let userUnmodified = await user.getById('61a7ce5b-7a26-1e8e-9ac8-06474d96a566')
-    expect(userResult).toBe(userUnmodified)
+    expect(userResult).toEqual(userUnmodified)
   })
 })
