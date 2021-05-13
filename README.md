@@ -36,7 +36,7 @@ Put the .env file attached to the email at the root of the project.
 
 **Run**
 ```shell
-docker-compose -f {your-local-path}/zem-test/docker-compose.yml up -d ap
+docker-compose -f {your-local-path}/zem-test/docker-compose.yml up -d api
 ```
 When It finishes building the container, the API started to build a serverless package to upload the functions to our local infra. 
 Look at the logs of the API container to see the generated endpoint. Like this
